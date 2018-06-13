@@ -1,0 +1,33 @@
+{% extends "blog/layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card text-white bg-secondary mb-3">
+                <div class="card-header">
+                    <h2>
+                        {{ post.title }}
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <small class="card-title">
+                        by {{ post.author }}, at {{ post.created_at }}
+                    </small>
+                    <hr>
+                    <p class="card-text">
+                        {% if post.photo %}
+                        <img src="{{ post.photo.url }}" alt="" style="max-width:100%;" class="mb-3">
+                        {% endif %}
+                        {{ post.content|linebreaks }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'blog:index' %}" class="btn btn-primary">목록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

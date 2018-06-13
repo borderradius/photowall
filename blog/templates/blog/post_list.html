@@ -8,7 +8,9 @@
                 <ul class="list-unstyled mt-3">
                     <li>
                     {% for post in post_list  %}
+                        <a href="{% url 'blog:post_detail' post.pk %}">
                         {{ post.title }}
+                        </a>
                     {% endfor %}
                     </li>
                 </ul>
