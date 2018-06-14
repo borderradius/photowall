@@ -51,3 +51,6 @@ class Comment(models.Model):
     
     def get_edit_url(self):
         return reverse('blog:comment_edit', args=[self.post.pk, self.pk])
+
+    def get_delete_url(self):
+        return reverse('blog:comment_delete', args=[self.post.pk, self.pk])

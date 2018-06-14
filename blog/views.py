@@ -49,3 +49,18 @@ def comment_edit(request, post_pk, pk):
     return render(request, 'blog/comment_form.html', {
         'form': form,
     })
+
+@login_required
+def comment_delete(request, post_pk, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if comment.user != request.user:
+        return redirect(comment.post)
+
+    if request.method == 'POST':
+        comment.delete()
+        return redirect(comment.post)
+
+    return render(request, 'blog/comment_confirm_delete.html',{
+        'comment': comment,
+    })    
+ 
