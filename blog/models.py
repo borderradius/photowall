@@ -1,5 +1,6 @@
 import re
 from django import forms
+from django.conf import settings
 from django.db import models
 
 
@@ -32,3 +33,14 @@ class Post(models.Model):
         if self.lnglat:
             return self.lnglat.split(',')[1]
         return None
+
+class Comment(models.Model):
+    # Post : Comment = 1 : N
+    post = models.ForeignKey(Post)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta: 
+        ordering = ['-id']

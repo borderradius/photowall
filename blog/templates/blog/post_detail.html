@@ -59,10 +59,21 @@ img.mb-3 {
                         <div class="post-map"></div>
 
                         {{ post.content|linebreaks }}
+                        <hr>
+                        <ul>
+                        {% for comment in post.comment_set.all  %}
+                            <li>
+                            {{ comment.message }} -
+                            by {{ comment.user }}, 
+                            at {{ comment.created_at }}
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </p>
                 </div>
                 <div class="card-footer">
                     <a href="{% url 'blog:index' %}" class="btn btn-primary">목록</a>
+                    <a href="{% url 'blog:comment_new' post.pk %}" class="btn btn-primary">댓글</a>
                 </div>
             </div>
         </div>
