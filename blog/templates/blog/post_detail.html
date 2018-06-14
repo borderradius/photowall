@@ -66,6 +66,7 @@ img.mb-3 {
                             {{ comment.message }} -
                             by {{ comment.user }}, 
                             at {{ comment.created_at }}
+                            <a href="{{ comment.get_edit_url }}">수정</a>
                             </li>
                         {% endfor %}
                         </ul>

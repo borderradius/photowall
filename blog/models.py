@@ -1,5 +1,6 @@
 import re
 from django import forms
+from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import models
 
@@ -21,6 +22,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.pk])    
 
     @property
     def lng(self):
@@ -44,3 +48,6 @@ class Comment(models.Model):
 
     class Meta: 
         ordering = ['-id']
+    
+    def get_edit_url(self):
+        return reverse('blog:comment_edit', args=[self.post.pk, self.pk])
