@@ -2,17 +2,23 @@
 
 {% block content %}
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ user }}'s Profile</h1>
+            
+            <table>
+                <tr>
+                    <td>
+                        {{user.username}}
+                    </td>
+                    <td>
+                        {{user.date_joined}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 
-<h1>{{ user }}'s Profile</h1>
-
-<table>
-    <tr>
-        <td>
-            {{user.username}}
-        </td>
-        <td>
-            {{user.date_joined}}
-        </td>
-    </tr>
-</table>
 {% endblock content %}
